@@ -1,0 +1,110 @@
+[gd_scene load_steps=5 format=1]
+
+[ext_resource path="res://assets/scripts/Console.gd" type="Script" id=1]
+[ext_resource path="res://assets/animations/console_close.anm" type="Animation" id=2]
+[ext_resource path="res://assets/animations/console_open.anm" type="Animation" id=3]
+[ext_resource path="res://assets/scripts/interpreter.gd" type="Script" id=4]
+
+[node name="Console" type="CanvasLayer"]
+
+layer = 5
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+script/script = ExtResource( 1 )
+input_map_enter = null
+input_map_toggle = null
+input_map_getLast = null
+input_map_stopBuffer = null
+
+[node name="Control" type="Control" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 400.0
+
+[node name="term_panel" type="Panel" parent="Control"]
+
+visibility/opacity = 0.7
+anchor/right = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="term_out" type="RichTextLabel" parent="Control/term_panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_colors/default_color = Color( 0.175487, 0.910156, 0.0924377, 1 )
+bbcode/enabled = true
+bbcode/bbcode = ""
+visible_characters = -1
+percent_visible = 1.0
+
+[node name="term_in" type="LineEdit" parent="Control/term_panel"]
+
+anchor/top = 1
+anchor/right = 1
+focus/ignore_mouse = true
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 23.0
+margin/right = 0.0
+margin/bottom = 1.0
+custom_colors/font_color = Color( 0.112793, 0.785679, 0.875, 1 )
+placeholder/alpha = 0.6
+max_length = 150
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="console_animation" type="AnimationPlayer" parent="Control"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/console_close = ExtResource( 2 )
+anims/console_open = ExtResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Interpreter" type="Node" parent="."]
+
+script/script = ExtResource( 4 )
+
+[node name="Global_SoundControl" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = null
+config/pitch_random = 0.0
+
+
